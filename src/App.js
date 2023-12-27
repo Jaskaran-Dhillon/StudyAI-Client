@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import RequireAuth from "HOC/RequireAuth";
+import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import SignupPage from "./views/SignupPage";
 import Dashboard from "views/Dashboard";
@@ -8,6 +9,7 @@ import Logout from "views/Logout";
 import { DataContextProvider } from "context/DataProvider";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Theme from "theme/Theme";
+
 const theme = createTheme(Theme);
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
       <DataContextProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/homepage" element={<HomePage />} />
             <Route
               path="/dashboard"
               element={
