@@ -30,7 +30,6 @@ body {
 }
 
 .left-column{
-    background-color: #fff;
     float: left;
     width: 50%;
     padding: 25px;
@@ -69,7 +68,7 @@ body {
     font-size: 18px;
 }
 
-@media (max-width: 600px)  {
+@media (max-width: 800px)  {
     .left-column{
         width: 100%;
         height: auto;

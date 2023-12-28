@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap');
+
+.header {
+    margin-top: 8rem;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    color: #545090;
+}
+
+.header-title {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.header-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    padding: 0px 200px;
+}
+
+.content-row {
+    height: 100%;
+    margin: auto;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+}
+
+.content-heading {
+    font-weight: 700;
+    color: #545090;
+    font-size: 28px;
+}
+
+.content-paragraph {
+    color: #545090;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.content-left-column{
+    float: left;
+    width: 50%;
+    padding: 25px;
+    align-items: center;
+    vertical-align: center;
+}
+
+.content-right-column {
+    float: left;
+    width: 50%;
+    padding: 25px;
+    align-items: center;
+    vertical-align: center;
+}
+
+.content-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 800px)  {
+    .header-text {
+        padding: 0px;
+    }
+
+    .content-left-column{
+        width: 100%;
+        height: auto;
+    }
+
+    .content-right-column {
+        width: 100%;
+        height: auto;
+    }
+
+    .content-left-column img {
+        display: none;
+    }
+
+    .content-right-column img {
+        display: none;
+    }
+}

@@ -2,13 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../Hero.css";
-import HeroImage from '../images/student_learning.png'; // Tell Webpack this JS file uses this image
+import HeroImage from '../images/student_learning.png';
 
 const Hero = () => {
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {  
-      // Navigate to the specified path
       navigate(path);
     };
 

@@ -1,36 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import "../Footer.css";
 
-import "../NavBar.css";
-
-const NavBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleNavigate = (path) => {
-    // Close the menu before navigating
-    setMenuOpen(false);
-    // Navigate to the specified path
-    navigate(path);
-  };
-  
+const Footer = () => {
   return (
-    <nav>
+    <nav className="footer">
       <Logo />
-
-      <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <ul className={menuOpen ? "open" : ""}>
-        <li>
-          <button onClick={() => handleNavigate("/login")} className="links signIn">
-            Sign In
-          </button>
-        </li>
-      </ul>
+      <ul><h2 className="footer-text">Copyright © 2023 Study AI</h2></ul>
     </nav>
   );
 };
@@ -73,4 +48,4 @@ const Logo = () => (
   </svg>
 );
 
-export default NavBar;
+export default Footer;
