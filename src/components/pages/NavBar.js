@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "../NavBar.css";
 
-const NavBar = () => {
+const NavBar = () => {  
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
 
-  const handleNavigate = (path) => {
-    // Close the menu before navigating
+  const handleNavigate = () => {
     setMenuOpen(false);
-    // Navigate to the specified path
-    navigate(path);
+    navigate(loggedIn ? "/login" : "/dashboard");
   };
   
   return (
@@ -26,8 +26,8 @@ const NavBar = () => {
 
       <ul className={menuOpen ? "open" : ""}>
         <li>
-          <button onClick={() => handleNavigate("/login")} className="links signIn">
-            Sign In
+          <button onClick={handleNavigate} className="links signIn">
+            {loggedIn ? "Log out" : "Sign in" }
           </button>
         </li>
       </ul>
