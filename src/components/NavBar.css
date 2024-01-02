@@ -62,6 +62,10 @@ nav .menu span {
     border-radius: 30px;
 }
 
+.signIn:hover {
+    background-color: #464183;
+}
+
 @media (max-width: 600px) {
     nav .menu {
         display: flex;

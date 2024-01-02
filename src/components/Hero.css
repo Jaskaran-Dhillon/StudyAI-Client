@@ -68,6 +68,10 @@ body {
     font-size: 18px;
 }
 
+.get-started-btn:hover {
+    background-color: #464183;
+}
+
 @media (max-width: 800px)  {
     .left-column{
         width: 100%;

@@ -15,12 +15,12 @@ const Content = () => {
                 <div className="content-left-column">
                     <img src={NotesImage} alt="Notes"/>
                     <h2 className="content-heading">Summarized Notes</h2>
-                    <p className="content-paragraph">StudyAI's Summarized Notes distill detailed content into concise, focused insights, enriching your learning experience.</p>
+                    <p className="content-paragraph">StudyAI's summarized notes distill detailed content into concise, focused insights, enriching your learning experience.</p>
                 </div>
                 <div className="content-right-column">
                     <img src={ConceptsImage} alt="Concepts"/>
                     <h2 className="content-heading">Key Concepts</h2>
-                    <p className="content-paragraph">Each summary highlights Key Concepts that crystallize the core ideas, helping you retain crucial information efficiently.</p>               
+                    <p className="content-paragraph">Each summary highlights key concepts that develop the core ideas, helping you retain crucial information efficiently.</p>               
                 </div>
             </div>
         </div>
