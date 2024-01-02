@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap');
+
+#form-file-upload {
+    width: auto;
+    max-width: 100%;
+    text-align: center;
+    position: relative;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #5D5A88;
+}
+
+#input-file-upload {
+    display: none;
+}
+
+#label-file-upload {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-radius: 1rem;
+    border-style: dashed;
+    border-color: #5D5A88;
+    padding: 3rem 0rem;
+    margin-bottom: 3rem;
+}
+
+.select-dropdown {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.select-dropdown select {
+    width: 190px;
+    padding: 16px 10px;
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 15px;
+    border-color: #5D5A88;
+    background-color: white;
+    color: #5D5A88;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.select-dropdown select:active, .select-dropdown select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.get-summary-btn {
+    width: 190px;
+    padding: 24px 36px;
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 15px;
+    border: none;
+    background-color: #5D5A88;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.get-summary-btn:hover {
+    background-color: #464183;
+}
+
+.file-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+}

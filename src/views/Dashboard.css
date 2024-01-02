@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap');
+
+.dashboard-header {
+    margin: 3rem 0;    
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    color: #545090;
+}
+
+.dashboard-header-title {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.dashboard-header-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    padding: 0px 200px;
+}
