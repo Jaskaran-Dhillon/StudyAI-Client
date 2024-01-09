@@ -26,6 +26,7 @@
     border-color: #5D5A88;
     padding: 3rem 0rem;
     margin-bottom: 3rem;
+    cursor: pointer;
 }
 
 .select-dropdown {

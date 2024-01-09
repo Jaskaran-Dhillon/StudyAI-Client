@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "../NavBar.css";
+import UserProfileIcon from '../images/user_profile_icon.png'; 
 
 const NavBar = () => {  
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const userName = useSelector((state) => loggedIn ? state.auth.user.firstName + " " + state.auth.user.lastName : "");
 
   const handleNavigate = () => {
     setMenuOpen(false);
@@ -25,6 +27,15 @@ const NavBar = () => {
       </div>
 
       <ul className={menuOpen ? "open" : ""}>
+        <li>          
+          <div className="user-data">
+            <div className="user-avatar">
+              {loggedIn ? <img src={UserProfileIcon} alt="UserIcon"/> : ""}
+            </div>
+            <div className="user-name">{userName}</div>
+          </div>
+        </li>
+
         <li>
           <button onClick={handleNavigate} className="links signIn">
             {loggedIn ? "Log out" : "Sign in" }

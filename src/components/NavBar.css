@@ -28,7 +28,7 @@ nav ul li {
    font-family: 'DM Sans', sans-serif;
    font-size: 18px;
    color: #545090;
-   cursor: pointer;
+   text-decoration: none;
 }
 
 nav .menu {
@@ -47,6 +47,7 @@ nav .menu span {
     width: 100%;
     background-color:#545090; 
     border-radius: 0.2rem;
+    cursor: pointer;
 }
 
 
@@ -60,13 +61,28 @@ nav .menu span {
     color: white;
     padding: 18px 24px;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .signIn:hover {
     background-color: #464183;
 }
 
-@media (max-width: 600px) {
+.user-data {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.user-avatar > img {
+    width: 60px;
+}
+
+@media (max-width: 700px) {
     nav .menu {
         display: flex;
     }
@@ -97,5 +113,13 @@ nav .menu span {
     nav ul li a {
         display: block;
         margin: 0.2rem 0.5rem;
+    }
+
+    .user-data {
+        display: block;
+    }
+
+    .user-name {
+        margin-left: 0px;
     }
 }
