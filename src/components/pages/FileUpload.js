@@ -27,7 +27,8 @@ function FileUpload() {
        formData.append("file", selectedFile);
 
       const result = await aiService.summarize(formData);
-      console.log(result)
+      console.log(result);
+      console.log(JSON.parse(result.data.data));
     } catch (e){
       console.error(e);
     }
@@ -58,7 +59,7 @@ function FileUpload() {
 
       {/* <button className="get-summary-btn" disabled={!selectedFile}>Get Summary</button> */}
     </form>
-    <button className="get-summary-btn" onClick={handleSubmit}>Get Summary</button>
+    <button className="get-summary-btn" disabled={!selectedFile} onClick={handleSubmit}>Get Summary</button>
   </div>
   );
 }
