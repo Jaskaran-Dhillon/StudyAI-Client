@@ -73,6 +73,11 @@
     background-color: #464183;
 }
 
+.get-summary-btn:disabled {
+    background-color: #7d7c86;
+    cursor: auto;
+}
+
 .file-name {
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;

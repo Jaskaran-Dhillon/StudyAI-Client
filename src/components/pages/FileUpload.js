@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { aiService } from 'services/ai.service';
 import UploadImage from '../images/upload_icon.png'; 
 import "../FileUpload.css";
 
@@ -14,9 +15,28 @@ function FileUpload() {
     }
   };
 
+
+  const handleSubmit = async (e) => {
+    //console.log(e.target);
+    console.log(selectedFile);
+    // const data = {
+    //   file: selectedFile
+    // }
+    try {
+       const formData = new FormData();
+       formData.append("file", selectedFile);
+
+      const result = await aiService.summarize(formData);
+      console.log(result)
+    } catch (e){
+      console.error(e);
+    }
+    e.preventDefault();
+  };
+
   return (
     <div>
-    <form id="form-file-upload" onSubmit={(e) => e.preventDefault()}>
+    <form id="form-file-upload" onSubmit={handleSubmit}>
       <input ref={inputRef} type="file" id="input-file-upload" multiple={false} accept=".pdf" onChange={handleChange} />
 
       <label id="label-file-upload" htmlFor="input-file-upload">
@@ -36,8 +56,9 @@ function FileUpload() {
         </select>
       </div>
 
-      <button className="get-summary-btn">Get Summary</button>
+      {/* <button className="get-summary-btn" disabled={!selectedFile}>Get Summary</button> */}
     </form>
+    <button className="get-summary-btn" onClick={handleSubmit}>Get Summary</button>
   </div>
   );
 }
