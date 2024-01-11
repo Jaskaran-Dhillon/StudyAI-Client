@@ -17,6 +17,8 @@ function FileUpload() {
 
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     //console.log(e.target);
     console.log(selectedFile);
     // const data = {
@@ -32,7 +34,6 @@ function FileUpload() {
     } catch (e){
       console.error(e);
     }
-    e.preventDefault();
   };
 
   return (
@@ -57,9 +58,8 @@ function FileUpload() {
         </select>
       </div>
 
-      {/* <button className="get-summary-btn" disabled={!selectedFile}>Get Summary</button> */}
+      <button className="get-summary-btn" disabled={!selectedFile} onClick={handleSubmit}>Get Summary</button>
     </form>
-    <button className="get-summary-btn" disabled={!selectedFile} onClick={handleSubmit}>Get Summary</button>
   </div>
   );
 }
