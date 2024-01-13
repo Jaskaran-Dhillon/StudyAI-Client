@@ -1,7 +1,19 @@
 import React, { useState, useRef } from 'react';
 import { aiService } from 'services/ai.service';
 import UploadImage from '../images/upload_icon.png'; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../FileUpload.css";
+
+function fileSize(sizeInBytes) {
+  const kbSize = sizeInBytes / 1024;
+  if (kbSize < 1024) {
+    return kbSize.toFixed(2) + ' KB';
+  } else {
+    const mbSize = kbSize / 1024;
+    return mbSize.toFixed(2) + ' MB';
+  }
+}
 
 function FileUpload() {
   const inputRef = useRef(null);
@@ -11,7 +23,13 @@ function FileUpload() {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      setSelectedFile(file);
+
+      if (file && file.type === 'application/pdf') {
+        setSelectedFile(file);
+      } else{
+        setSelectedFile(null);
+        toast.error("Invalid file type, please select a PDF.")
+      }
     }
   };
 
@@ -48,7 +66,7 @@ function FileUpload() {
         </div>
       </label>
 
-      <h3 className="file-name">{selectedFile ? selectedFile.name : "No file chosen"}</h3>
+      <h3 className="file-name">{selectedFile ? `${selectedFile.name} (${fileSize(selectedFile.size)})` : "No file chosen"}</h3>
 
       <div className="select-dropdown">
         <select id="summary-type">

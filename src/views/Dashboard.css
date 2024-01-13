@@ -18,3 +18,9 @@
     line-height: 30px;
     padding: 0px 200px;
 }
+
+@media (max-width: 750px) {
+    .dashboard-header-text {
+        padding: 0px 0px;
+    }
+}
