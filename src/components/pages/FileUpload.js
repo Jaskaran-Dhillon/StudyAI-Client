@@ -24,7 +24,13 @@ function FileUpload() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
-      if (file && file.type === 'application/pdf') {
+      // if (file && file.type === 'application/pdf') {
+      //   setSelectedFile(file);
+      // } else{
+      //   setSelectedFile(null);
+      //   toast.error("Invalid file type, please select a PDF.")
+      // }
+      if (file) {
         setSelectedFile(file);
       } else{
         setSelectedFile(null);
@@ -48,7 +54,7 @@ function FileUpload() {
 
       const result = await aiService.summarize(formData);
       console.log(result);
-      console.log(JSON.parse(result.data.data));
+      //console.log(JSON.parse(result.data.data));
     } catch (e){
       console.error(e);
     }
@@ -57,7 +63,7 @@ function FileUpload() {
   return (
     <div>
     <form id="form-file-upload" onSubmit={handleSubmit}>
-      <input ref={inputRef} type="file" id="input-file-upload" multiple={false} accept=".pdf" onChange={handleChange} />
+      <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
 
       <label id="label-file-upload" htmlFor="input-file-upload">
         <div>

@@ -38,7 +38,7 @@ function App() {
                 loggedIn ? (
                   <Navigate to="/dashboard" replace={true} />
                 ) : (
-                  <Navigate to="/login" replace={true} />
+                  <Navigate to="/homepage" replace={true} />
                 )
               }
             />
