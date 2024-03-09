@@ -116,7 +116,7 @@ function FileUpload() {
       formData.append("verbosity", document.getElementById("summary-type").value); // 0-short, 1-medium, 2-long
       formData.append("summary", summarySelected);
       formData.append("bullet", bulletSelected);
-      formData.append("keyword", keywordSelected);
+      formData.append("keyWord", keywordSelected);
 
       // for (let pair of formData.entries()) {
       //   console.log(pair[0] + ', ' + pair[1]); 
