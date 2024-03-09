@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap');
+
+.signup-header {
+    font-family: 'DM Sans', sans-serif;
+    color: #545090;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.text-field {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px !important;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 6px 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #5D5A88;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+}
+
+.login-btn:hover {
+    background-color: #464183;
+}

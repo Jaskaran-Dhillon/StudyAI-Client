@@ -3,10 +3,12 @@ const loginPageStyle = () => ({
     marginBottom: "10px !important",
   },
   signUpLink:{
-    fontSize: "12px",
+    fontFamily: "DM Sans,sans-serif",
+    fontSize: "13px",
     color: "#1976d2",
     textDecoration: "underline",
-    cursor: "pointer"
+    cursor: "pointer",
+    marginTop: "2rem"
   }
 });
 

@@ -11,8 +11,8 @@ export default function Dashboard() {
       <Navbar />
       
       <div className="dashboard-header">
-        <h1 className="dashboard-header-title">PDF to Notes</h1>
-        <h2 className="dashboard-header-text">Upload the PDF document, choose a preset, and get your summarized notes.</h2>
+        <h1 className="dashboard-header-title">File to Notes</h1>
+        <h2 className="dashboard-header-text">Upload your file, choose a preset, and get your summarized notes.</h2>
       </div>
 
       <FileUpload />

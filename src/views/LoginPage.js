@@ -8,12 +8,9 @@ import { useDispatch } from "react-redux";
 import { login } from "store/actions/auth.action";
 
 //mui components
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 //components
@@ -23,6 +20,8 @@ import Grid from "@mui/material/Grid";
 //styles
 import styles from "assets/jss/loginPageStyle";
 import { makeStyles } from "@mui/styles";
+import "./SignupPage.css";
+import LoginImage from '../components/images/login_icon.png'; 
 
 const useStyles = makeStyles(styles);
 
@@ -58,10 +57,9 @@ export default function LoginPage() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+        <img src={LoginImage} alt="Login"/>
+        <h1 className="signup-header">Sign in</h1>
+        
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ mt: 1 }}>
             <Controller
@@ -69,9 +67,9 @@ export default function LoginPage() {
                 <TextField
                   {...field}
                   label="Email Address"
-                  fullWidth
+                  sx={{ width: "100%" }}
                   autoComplete="email"
-                  className={classes.emailInput}
+                  className="text-field"
                 />
               )}
               defaultValue=""
@@ -83,23 +81,24 @@ export default function LoginPage() {
                 <TextField
                   {...field}
                   label="Password"
-                  fullWidth
+                  sx={{ width: "100%" }}
                   autoComplete="password"
                   type="password"
+                  className="text-field"
                 />
               )}
               defaultValue=""
               name="password"
               control={control}
             />
-            <Button
+            <button
               type="submit"
-              fullWidth
               variant="contained"
+              className="login-btn"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
-            </Button>
+            </button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <p

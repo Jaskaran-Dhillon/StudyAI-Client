@@ -25,7 +25,7 @@
     border-style: dashed;
     border-color: #5D5A88;
     padding: 3rem 0rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     cursor: pointer;
 }
 
@@ -40,7 +40,7 @@
     width: 190px;
     padding: 16px 10px;
     cursor: pointer;
-    margin-top: 2rem;
+    margin: 2rem 0rem;
     border-radius: 15px;
     border-color: #5D5A88;
     background-color: white;
@@ -78,9 +78,30 @@
     cursor: auto;
 }
 
+.file-name-container {
+    display: inline-flex;
+    align-items: center;
+}
+
 .file-name {
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
     font-size: 18px;
     color: black;
+    margin: 0;
+}
+
+.option-selector {
+    color: #5D5A88;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.options {
+    margin-left: 1rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 1rem;
 }

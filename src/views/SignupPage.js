@@ -7,18 +7,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 //mui components
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 //components
 import Copyright from "components/Copyright";
 //styles
 import styles from "assets/jss/loginPageStyle";
 import { makeStyles } from "@mui/styles";
+import "./SignupPage.css";
+import LoginImage from '../components/images/login_icon.png'; 
 
 const useStyles = makeStyles(styles);
 
@@ -57,10 +56,9 @@ export default function SignupPage() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
+        <img src={LoginImage} alt="Login"/>
+        <h1 className="signup-header">Sign up</h1>
+        
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ mt: 1 }}>
             <Controller
@@ -68,9 +66,9 @@ export default function SignupPage() {
                 <TextField
                   {...field}
                   label="Email Address"
-                  fullWidth
+                  sx={{ width: "100%" }}
                   autoComplete="email"
-                  className={classes.emailInput}
+                  className="text-field"
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
@@ -91,8 +89,8 @@ export default function SignupPage() {
                 <TextField
                   {...field}
                   label="First Name"
-                  fullWidth
-                  className={classes.emailInput}
+                  sx={{ width: "100%" }}
+                  className="text-field"
                   error={!!errors.first_name}
                   helperText={errors.first_name?.message}
                 />
@@ -113,8 +111,8 @@ export default function SignupPage() {
                 <TextField
                   {...field}
                   label="Last Name"
-                  fullWidth
-                  className={classes.emailInput}
+                  sx={{ width: "100%" }}
+                  className="text-field"
                   error={!!errors.last_name}
                   helperText={errors.last_name?.message}
                 />
@@ -135,10 +133,10 @@ export default function SignupPage() {
                 <TextField
                   {...field}
                   label="Password"
-                  fullWidth
+                  sx={{ width: "100%" }}
                   autoComplete="password"
                   type="password"
-                  className={classes.emailInput}
+                  className="text-field"
                   error={!!errors.password}
                   helperText={errors.password?.message}
                 />
@@ -156,14 +154,14 @@ export default function SignupPage() {
                 },
               }}
             />
-            <Button
+            <button
               type="submit"
-              fullWidth
               variant="contained"
+              className="login-btn"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
-            </Button>
+            </button>
           </Box>
         </form>
       </Box>
