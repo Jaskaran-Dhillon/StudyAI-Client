@@ -6,7 +6,8 @@ const summarize = async (data) => {
   {
     headers: {
       'Content-Type': 'multipart/form-data'
-    }
+    },
+    responseType: "blob"
   });
 };
 

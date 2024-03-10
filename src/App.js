@@ -5,6 +5,7 @@ import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import SignupPage from "./views/SignupPage";
 import Dashboard from "views/Dashboard";
+import PdfRender from "./views/PdfRender";
 import Logout from "views/Logout";
 import { DataContextProvider } from "context/DataProvider";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -29,6 +30,7 @@ function App() {
                 </RequireAuth>
               }
             />
+            <Route path="/pdfrender" element={<PdfRender />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/logout" element={<Logout />} />

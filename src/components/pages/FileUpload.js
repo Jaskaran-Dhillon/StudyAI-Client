@@ -1,11 +1,14 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate  } from "react-router-dom";
 import { aiService } from 'services/ai.service';
+import { toast } from "react-toastify";
 import UploadImage from '../images/upload_icon.png'; 
 import DeleteIcon from '@mui/icons-material/Delete';
 import PdfIcon from '@mui/icons-material/PictureAsPdfRounded';
 import AudioIcon from '@mui/icons-material/AudioFileRounded';
 import VideoIcon from '@mui/icons-material/VideoFile';
-import { toast } from "react-toastify";
+import LoadingModal from './LoadingModal.js'; // Import the LoadingModal component
+import '@react-pdf-viewer/core/lib/styles/index.css';
 import "react-toastify/dist/ReactToastify.css";
 import "../FileUpload.css";
 
@@ -34,13 +37,16 @@ function getFileTypeIcon(fileType) {
 
 function FileUpload() {
   const inputRef = useRef(null);
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [summarySelected, setSummary] = useState(true);   // Summary option set to toggled
+  const [summarySelected, setSummary] = useState(true);
   const [bulletSelected, setBullet] = useState(false);
   const [keywordSelected, setKeyword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = function (e) {
     e.preventDefault();
+    
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
@@ -48,7 +54,7 @@ function FileUpload() {
       //   setSelectedFile(file);
       // } else{
       //   setSelectedFile(null);
-      //   toast.error("Invalid file type, please select a PDF.")
+      //   toast.error("Invalid file type, please upload a PDF or MP3.")
       // }
 
       if (file) {
@@ -62,7 +68,6 @@ function FileUpload() {
 
   const handleDelete = () => {
     setSelectedFile(null);
-    // Clear the file input value if the delete icon is clicked
     if (inputRef.current) {
       inputRef.current.value = "";
     }
@@ -71,7 +76,7 @@ function FileUpload() {
   const handleOptionChange = (option) => {
     switch (option) {
       case 'summary':
-        // Only if bullet or keyword is selected summary can be untoggled
+        // Only if "bullet" or "keyword" is selected summary can be untoggled
         if (!bulletSelected && !keywordSelected) {
           setSummary(true);
         } else {
@@ -97,7 +102,7 @@ function FileUpload() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Currently just for sending PDFs and MP3 file
     let fileType;
     if (selectedFile.type === 'application/pdf') {
@@ -106,10 +111,9 @@ function FileUpload() {
       fileType = "audio";
     }
 
-    // const data = {
-    //   file: selectedFile
-    // }
     try {
+      setLoading(true);
+
       const formData = new FormData();
       formData.append("file", selectedFile);
       formData.append("fileType", fileType);
@@ -118,87 +122,93 @@ function FileUpload() {
       formData.append("bullet", bulletSelected);
       formData.append("keyWord", keywordSelected);
 
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0] + ', ' + pair[1]); 
-      // }
-
       const result = await aiService.summarize(formData);
-      console.log(result);
-      //console.log(JSON.parse(result.data.data));
+      const pdfBlob = result.data;
+      const url = URL.createObjectURL(pdfBlob);
+
+      setLoading(false);
+
+      // Navigate to PdfRender route with pdfUrl as query param
+      navigate(`/pdfrender?pdfUrl=${encodeURIComponent(url)}`);
+
     } catch (e){
+      setLoading(false);
       console.error(e);
     }
   };
 
   return (
     <div>
-    <form id="form-file-upload" onSubmit={handleSubmit}>
-      <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
+      {/* Conditionally render the LoadingModal based on the loading state */}
+      {loading && <LoadingModal />}
 
-      <label id="label-file-upload" htmlFor="input-file-upload">
-        <div>
-          <img src={UploadImage} alt="Upload"/>
-          <p>Click to upload your file here</p>
+      <form id="form-file-upload" onSubmit={handleSubmit}>
+        <input ref={inputRef} type="file" id="input-file-upload" multiple={false} onChange={handleChange} />
+
+        <label id="label-file-upload" htmlFor="input-file-upload">
+          <div>
+            <img src={UploadImage} alt="Upload"/>
+            <p>Click to upload your file here</p>
+          </div>
+        </label>
+
+        <div className="file-name-container">
+          {/* Show the file type icon */}
+          {selectedFile && getFileTypeIcon(selectedFile.name.split('.').pop().toLowerCase())}
+          
+          <h3 className="file-name">{selectedFile ? `${selectedFile.name} (${fileSize(selectedFile.size)})` : "No file chosen"}</h3>
+
+          {/* Delete icon to choose another file */}
+          {selectedFile && (
+            <DeleteIcon
+              className="delete-icon"
+              onClick={handleDelete}
+              style={{ cursor: "pointer", marginLeft: "2rem"}}
+            />
+          )}
         </div>
-      </label>
 
-      <div className="file-name-container">
-        {/* Show the file type icon */}
-        {selectedFile && getFileTypeIcon(selectedFile.name.split('.').pop().toLowerCase())}
-        
-        <h3 className="file-name">{selectedFile ? `${selectedFile.name} (${fileSize(selectedFile.size)})` : "No file chosen"}</h3>
+        {/* Verbosity dropdown */}
+        <div className="select-dropdown">
+          <select id="summary-type">
+            <option value='0'>Short</option>
+            <option value='1'>Medium</option>
+            <option value='2'>Long</option>
+          </select>
+        </div>
 
-        {/* Delete icon to choose another file */}
-        {selectedFile && (
-          <DeleteIcon
-            className="delete-icon"
-            onClick={handleDelete}
-            style={{ cursor: "pointer", marginLeft: "2rem"}}
-          />
-        )}
-      </div>
+        {/* Notes type option (summary is toggled from default) */}
+        <div className="option-selector">
+          <label className="options">
+            <input
+              type="checkbox"
+              checked={summarySelected}
+              onChange={() => handleOptionChange("summary")}
+            />
+            Summary
+          </label>
 
-      {/* Verbosity dropdown */}
-      <div className="select-dropdown">
-        <select id="summary-type">
-          <option value='0'>Short</option>
-          <option value='1'>Medium</option>
-          <option value='2'>Long</option>
-        </select>
-      </div>
+          <label className="options">
+            <input
+              type="checkbox"
+              checked={bulletSelected}
+              onChange={() => handleOptionChange("bullet")}
+            />
+            Bullet Points
+          </label>
+          
+          <label className="options">
+            <input
+              type="checkbox"
+              checked={keywordSelected}
+              onChange={() => handleOptionChange("keyword")}
+            />
+            Keywords
+          </label>
+        </div>
 
-      {/* Notes type option (summary is toggled from default) */}
-      <div className="option-selector">
-        <label className="options">
-          <input
-            type="checkbox"
-            checked={summarySelected}
-            onChange={() => handleOptionChange("summary")}
-          />
-          Summary
-        </label>
-
-        <label className="options">
-          <input
-            type="checkbox"
-            checked={bulletSelected}
-            onChange={() => handleOptionChange("bullet")}
-          />
-          Bullet Points
-        </label>
-        
-        <label className="options">
-          <input
-            type="checkbox"
-            checked={keywordSelected}
-            onChange={() => handleOptionChange("keyword")}
-          />
-          Keywords
-        </label>
-      </div>
-
-      <button className="get-summary-btn" disabled={!selectedFile} onClick={handleSubmit}>Get Summary</button>
-    </form>
+        <button className="get-summary-btn" disabled={!selectedFile} onClick={handleSubmit}>Get Summary</button>
+      </form>
   </div>
   );
 }

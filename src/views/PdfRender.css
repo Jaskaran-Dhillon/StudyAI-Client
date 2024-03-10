@@ -1,0 +1,33 @@
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-to-dashboard-btn {
+    width: 240px;
+    padding: 16px 10px;
+    cursor: pointer;
+    margin: 2rem 0rem;
+    border-radius: 5px;
+    background-color: white;
+    color: #5D5A88;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    border-width: thin;
+}
+
+.download-btn {
+    width: 240px;
+    padding: 6px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #5D5A88;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.75;
+    margin: 2rem 0rem;
+}
