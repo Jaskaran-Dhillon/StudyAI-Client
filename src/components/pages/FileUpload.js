@@ -103,7 +103,7 @@ function FileUpload() {
     if (selectedFile.type === 'application/pdf') {
       fileType = "pdf";
     } else if (selectedFile.type === 'audio/mpeg') {
-      fileType = "mp3";
+      fileType = "audio";
     }
 
     // const data = {
