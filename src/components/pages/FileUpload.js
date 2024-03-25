@@ -51,18 +51,11 @@ function FileUpload() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
-      // if (file && (file.type === 'application/pdf' || file.type === 'audio/mpeg')) {
-      //   setSelectedFile(file);
-      // } else{
-      //   setSelectedFile(null);
-      //   toast.error("Invalid file type, please upload a PDF or MP3.")
-      // }
-
-      if (file) {
+      if (file && (file.type === 'application/pdf' || file.type === 'audio/mpeg' || file.type === 'video/mp4')) {
         setSelectedFile(file);
       } else{
         setSelectedFile(null);
-        toast.error("Invalid file type, please select a PDF.")
+        toast.error("Invalid file type, please upload either a PDF, MP3, or MP4 file.")
       }
     }
   };
