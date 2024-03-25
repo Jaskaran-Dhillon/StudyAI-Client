@@ -134,6 +134,7 @@ function FileUpload() {
     } catch (e){
       setLoading(false);
       console.error(e);
+      toast.error(e);
     }
   };
 
