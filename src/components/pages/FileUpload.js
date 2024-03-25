@@ -42,6 +42,7 @@ function FileUpload() {
   const [summarySelected, setSummary] = useState(true);
   const [bulletSelected, setBullet] = useState(false);
   const [keywordSelected, setKeyword] = useState(false);
+  const [mcqSelected, setMCQ] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = function (e) {
@@ -95,6 +96,9 @@ function FileUpload() {
           setSummary(true);
         }
         break;
+      case 'mcq':
+        setMCQ(true);
+        break;
       default:
         break;
     }
@@ -121,7 +125,8 @@ function FileUpload() {
       formData.append("summary", summarySelected);
       formData.append("bullet", bulletSelected);
       formData.append("keyWord", keywordSelected);
-
+      formData.append("mcq", mcqSelected)
+      
       const result = await aiService.summarize(formData);
       const pdfBlob = result.data;
       const url = URL.createObjectURL(pdfBlob);
@@ -205,6 +210,15 @@ function FileUpload() {
               onChange={() => handleOptionChange("keyword")}
             />
             Keywords
+          </label>
+          
+          <label className="options">
+            <input
+              type="checkbox"
+              checked={mcqSelected}
+              onChange={() => handleOptionChange("mcq")}
+            />
+            Multiple Choice Questions
           </label>
         </div>
 
