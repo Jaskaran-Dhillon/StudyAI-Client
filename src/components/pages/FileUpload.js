@@ -90,7 +90,7 @@ function FileUpload() {
         }
         break;
       case 'mcq':
-        setMCQ(true);
+        setMCQ(!mcqSelected);
         break;
       default:
         break;
